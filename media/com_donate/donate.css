@@ -1,0 +1,25 @@
+.formsheet {
+	border: 1px solid #5D4E3B;
+	margin: 1em 0;
+}
+
+.formsheet legend {
+	color: #5D4E3B;
+	font-weight: bold;
+	padding: 0 5px;
+}
+
+.formsheet table {
+	
+}
+
+.formsheet td {
+	padding: 0.5em 0;
+}
+
+.formsheet td.key {
+	padding-right: 10px;
+	width: 150px;
+	
+	text-align: right;
+}

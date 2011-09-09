@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<metadata>
+	<layout title="Membership Registration">
+		<message><![CDATA[
+			Membership registration page
+		]]></message>		
+	</layout>
+	
+	<params>
+		<param type="textarea" name="description" default="" Label="Description" rows="10" cols="40" />
+		
+		<param type="list" name="type" default="1" label="Registration Type">
+			<option value="1">Individual</option>
+			<option value="2">Organization</option>
+		</param>
+	</params>
+</metadata>
