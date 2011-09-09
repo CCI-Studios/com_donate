@@ -1,6 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <config>
 	<params>
-		<param name="notification_email" type="text" label="Email Address" description="Email address to send notifications to." />
+		<param name="notification_email" type="text" label="Notification Address" description="Email address to send notifications to." />
+		
+		<param name="@spacer" type="spacer" default="" label="Paypal Settings" description="" />
+		
+		<param name="use_sandbox" type="radio" default="0" label="Use Paypal Sandbox" description="Use the Paypal sandbox to test transactions.">
+			<option value="0">No</option>
+			<option value="1">Yes</option>
+		</param>
+		
+		<param name="business" type="text" label="Business" />
+		<param name="currency_code" type="text" label="Currency Code" default="CAD" description="Currency code to use for collecing funds" />
+		
+		
+		<param name="paypal_url" type="hidden" value="https://www.paypal.com" />
+		<param name="paypal_sandbox_url" type="hidden" value="https://www.sandbox.paypal.com" />
 	</params>
 </config>
