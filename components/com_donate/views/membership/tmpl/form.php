@@ -55,7 +55,7 @@ Escarpment regions through our Escarpment Enterprise Club</li>
 			
 			<? if ($type == '1'): ?>
 			<tr>
-				<td class="key"><label>Organization Name:</label></td>
+				<td class="key"><label>Occupation:</label></td>
 				<td><input type="text" name="occupation" value="<?= $membership->occupation ?>" /></td>
 			</tr>
 			<? endif; ?>
