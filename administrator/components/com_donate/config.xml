@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<config>
+	<params>
+		<param name="notification_email" type="text" label="Email Address" description="Email address to send notifications to." />
+	</params>
+</config>
