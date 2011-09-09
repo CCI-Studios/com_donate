@@ -1,0 +1,1 @@
+<p>Thank you for becoming a member of the Coalition on the Niagara Escarpment! You will be recieving an email shortly confirming your details.</p>

@@ -1,0 +1,1 @@
+<p>Thank you for your interest in becoming a Coalition on the Nigara Escarpment Member.</p>
