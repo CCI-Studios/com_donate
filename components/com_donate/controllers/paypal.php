@@ -49,8 +49,8 @@ class ComDonateControllerPaypal extends ComDefaultControllerResource
 					$this->_sendMembershipThankyou($item);
 					$this->_sendMembershipNotification($item);
 				} elseif ($post['item_name'] === 'Donation') {
-					$this->_sendMembershipThankyou($item);
-					$this->_sendMembershipNotification($item);
+					$this->_sendDonationThankyou($item);
+					$this->_sendDonationNotification($item);
 				}
 			}
 			
