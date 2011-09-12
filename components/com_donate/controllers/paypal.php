@@ -66,13 +66,13 @@ class ComDonateControllerPaypal extends ComDefaultControllerResource
 	
 	protected function _sendMembershipThankyou($membership)
 	{
-		$this->_sendEmail(
-			$membership->email,
-			'Thank you for becoming a Coalition on the Niagara Escarpment Member',
-			"<p>Your transaction has been successfully completed!</p>
-			<p>The Coalition on the Niagara Escarpment greatly appreciates your support and hopes you will continue to be in active in your usage of our website and ongoing protection of the Escarpment.</p>
-			<p>Thank you!</p>",
-			($membership->gift)? JPATH_SITE.'media/com_donate/CONE_GiftCertificate.pdf' : null
+		$subject = "Thank you for becoming a Coalition on the Niagara Escarpment Member";
+		$body = "<p>Your transaction has been successfully completed!</p>".
+			"<p>The Coalition on the Niagara Escarpment greatly appreciates your support and hopes you will continue to be in active in your usage of our website and ongoing protection of the Escarpment.</p>".
+			"<p>Thank you!</p>";
+		
+		$this->_sendEmail($membership->email, $subject, $body,
+			($membership->gift)? JPATH_SITE.'/media/com_donate/CONE_GiftCertificate.pdf' : null
 		);
 	}
 	
@@ -81,36 +81,100 @@ class ComDonateControllerPaypal extends ComDefaultControllerResource
 		$params = JComponentHelper::getParams('com_donate');
 		$email = $params->get('notification_email');
 		
+		$subject = 'New Membership registration';
+		$body = "<p>There is a new membership registration:</p>".
+			"<p>Name: {$membership->last_name}, {$membership->first_name}<br/>".
+			"Occupation/Organization: {$membership->occupation}<br/>".
+			"Phone: {$membership->phone}<br/>".
+			"Email: {$membership->email}</p>".
+			"<p>Address: {$membership->address1}<br/>".
+			"Address: {$membership->address2}<br/>".
+			"City: {$membership->city}<br/>".
+			"Province: {$membership->province}<br/>".
+			"Postal Code: {$membership->province}</p>".
+			"<p>Membership Cost: {$membership->amount}<br/>".
+			"Donation: {$membership->donation}<br/>".
+			"Autorenew: {$membership->renew}<br/>".
+			"Gift: {$membership->gift}<br/>".
+			"Volunteer: {$membership->volunteer}</p>";
+		
+		$this->_sendEmail($email, $subject, $body);
+	}
+	
+	protected function _sendDonationThankyou($donation)
+	{
+		$subject = "Thank you for your donation";
+		$body = "<p>Your donation to the coalition on the Niagara Escapmemt was successfully recieved, thank you</p>";
+		
+		if ($donation->gift) {
+			$body .= "<p>A printable file is attached to this email which you can use to share with the person you have donated in the name of.</p>";
+		}
+		
+		$body .= "<p>Thank you!</p>";
+		
 		$this->_sendEmail(
-			$email,
-			'Someone has registered online.',
-			"{$membership->last_name}, {$membership->first_name}"
+			$donation->email,
+			$subject,
+			$body,
+			($donation->gift)? JPATH_SITE.'/media/com_donate/CONE_GiftCertificate.pdf' : null
 		);
 	}
 	
-	protected function _sendDonationThankyou($membership)
+	protected function _sendDonationNotification($donation)
 	{
+		$params = JComponentHelper::getParams('com_donate');
+		$email = $params->get('notification_email');
 		
+		$subject = "A new donation has been made";
+		$body = "<p>There is a new donation:</p>".
+					"<p>Name: {$membership->last_name}, {$membership->first_name}<br/>".
+					"Occupation/Organization: {$membership->occupation}<br/>".
+					"Phone: {$membership->phone}<br/>".
+					"Email: {$membership->email}</p>".
+					"<p>Address: {$membership->address1}<br/>".
+					"Address: {$membership->address2}<br/>".
+					"City: {$membership->city}<br/>".
+					"Province: {$membership->province}<br/>".
+					"Postal Code: {$membership->province}</p>".
+					"<p>Donation: {$membership->donation}<br/>".
+					"Gift: {$membership->gift}<br/>".
+					"Volunteer: {$membership->volunteer}</p>";
+		
+		$this->_sendEmail(
+			$email,
+			$subject,
+			$body
+		);
 	}
 	
-	protected function _sendDonationNotification($membership)
+	protected function _sendVolunteerNotification($item)
 	{
+		$params = JComponentHelper::getParams('com_donate');
+		$email = $params->get('notification_email');
 		
+		$subject = "New volunteer";
+		$body = "<p>There is a new volunteer requiresting details:</p>".
+			"<p>Name: {$item->last_name}, {$item->first_name}<br />".
+			"Email address: {$item->email}<br/>".
+			"Phone number: {$item->phone}</p>";
+			
+		$this->_sendEmail($email, $subject, $body);
 	}
 	
 	
 	protected function _sendEmail($to, $subject, $body, $attachment = null, $fromName = null, $fromEmail = null)
 	{
+		
 		if (!$fromName) {
 			$fromName = 'Coalition on the Nigara Escarpment';
 		}
 		
 		if (!$fromEmail) {
-			$fromEmail = 'info@niagaraescarpment.org'
+			$fromEmail = 'info@niagaraescarpment.org';
 		}
 		
 		JUtility::sendMail(
-			$fromEmail, $fromName, $to, $subject, $body, 1, null, null, $attachment);
+			$fromEmail, $fromName, $to, $subject, $body, 1, null, null, $attachment
 		);
 	}
 }
