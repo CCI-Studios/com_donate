@@ -1,10 +1,9 @@
 <? defined('KOOWA') or die; ?>
+<?= @helper('behavior.mootools') ?>
+<?= @helper('behavior.validator') ?>
 <script src="media://lib_koowa/js/koowa.js" />
 <style src="media://com_donate/donate.css" />
 
-<? if ($show_title): ?>
-	<h1 class="component_title"><?= $title ?></h1>
-<? endif; ?>
 
 <? if ($description): ?>
 	<p><?= $description ?></p>
@@ -18,12 +17,12 @@
 
 			<tr>
 				<td class="key"><label>First Name:</label></td>
-				<td><input type="text" name="first_name" value="<?= $donation->first_name ?>" /></td>
+				<td><input class="required" type="text" name="first_name" value="<?= $donation->first_name ?>" /></td>
 			</tr>
 		
 			<tr>
 				<td class="key"><label>Last Name:</label></td>
-				<td><input type="text" name="last_name" value="<?= $donation->last_name ?>" /></td>
+				<td><input class="required" type="text" name="last_name" value="<?= $donation->last_name ?>" /></td>
 			</tr>
 			
 			<tr>
@@ -38,7 +37,7 @@
 		
 			<tr>
 				<td class="key"><label>Email Address:</label></td>
-				<td><input type="text" name="email" value="<?= $donation->email ?>" /></td>
+				<td><input class="required email" type="text" name="email" value="<?= $donation->email ?>" /></td>
 			</tr>
 		</table>
 	</fieldset>
@@ -80,7 +79,7 @@
 		<table class="formtable">
 			<tr>
 				<td class="key"><label>How much would you like to donate?:</label></td>
-				<td><input type="text" name="donation" value="<?= $donation->donation ?>" /></td>
+				<td><input class="required" type="text" name="donation" value="<?= $donation->donation ?>" /></td>
 			</tr>
 			
 			<tr>
