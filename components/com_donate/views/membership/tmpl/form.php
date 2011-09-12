@@ -109,7 +109,7 @@ Escarpment regions through our Escarpment Enterprise Club</li>
 		<table class="formtable">
 			<? if ($type == '1'): ?>
 				<tr>
-					<td class="key"><label>Mmebership Cost:</label></td>
+					<td class="key"><label>Membership Cost:</label></td>
 					<td><?= @helper('listbox.individualAmount') ?></td>
 				</tr>
 			<? else: ?>
