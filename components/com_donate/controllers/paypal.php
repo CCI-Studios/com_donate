@@ -91,7 +91,7 @@ class ComDonateControllerPaypal extends ComDefaultControllerResource
 			"Address: {$membership->address2}<br/>".
 			"City: {$membership->city}<br/>".
 			"Province: {$membership->province}<br/>".
-			"Postal Code: {$membership->province}</p>".
+			"Postal Code: {$membership->postal}</p>".
 			"<p>Membership Cost: {$membership->amount}<br/>".
 			"Donation: {$membership->donation}<br/>".
 			"Autorenew: {$membership->renew}<br/>".
@@ -135,7 +135,7 @@ class ComDonateControllerPaypal extends ComDefaultControllerResource
 					"Address: {$membership->address2}<br/>".
 					"City: {$membership->city}<br/>".
 					"Province: {$membership->province}<br/>".
-					"Postal Code: {$membership->province}</p>".
+					"Postal Code: {$membership->postal}</p>".
 					"<p>Donation: {$membership->donation}<br/>".
 					"Gift: {$membership->gift}<br/>".
 					"Volunteer: {$membership->volunteer}</p>";
