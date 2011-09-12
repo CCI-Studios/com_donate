@@ -52,8 +52,12 @@ class ComDonateControllerPaypal extends ComDefaultControllerResource
 					$this->_sendDonationThankyou($item);
 					$this->_sendDonationNotification($item);
 				}
+				
+				if ($item->volunteer) {
+					$this->_sendVolunteerNotification($item);
+				}
 			}
-			
+
 			return "success";
 		} else {
 			return "error";
