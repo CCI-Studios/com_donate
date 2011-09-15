@@ -153,7 +153,7 @@ class ComDonateControllerPaypal extends ComDefaultControllerResource
 		$email = $params->get('notification_email');
 		
 		$subject = "New volunteer";
-		$body = "<p>There is a new volunteer requiresting details:</p>".
+		$body = "<p>There is a new volunteer requesting details:</p>".
 			"<p>Name: {$item->last_name}, {$item->first_name}<br />".
 			"Email address: {$item->email}<br/>".
 			"Phone number: {$item->phone}</p>";
