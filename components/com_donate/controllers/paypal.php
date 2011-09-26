@@ -31,14 +31,16 @@ class ComDonateControllerPaypal extends ComDefaultControllerResource
 		$status = curl_getinfo($curl, CURLINFO_HTTP_CODE);
 		curl_close($curl);
 		
-		if ($status == 200 && $response == 'VERIFIED') {		
+		if ($status == 200 && $response == 'VERIFIED') {
+			$id = intval(substr($post['invoice'], 1));
+			
 			if ($post['item_name'] == 'CONE Membership') {
 				$item = KFactory::tmp('site::com.donate.model.memberships')
-					->set('id', $post['invoice'])
+					->set('id', $id)
 					->getItem();
 			} elseif ($post['item_name'] == 'Donation') {
 				$item = KFactory::tmp('site::com.donate.model.donations')
-					->set('id', $post['invoice'])
+					->set('id', $id)
 					->getItem();
 			}
 

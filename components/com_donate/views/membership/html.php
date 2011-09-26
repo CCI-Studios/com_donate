@@ -40,7 +40,7 @@ class ComDonateViewMembershipHtml extends ComDefaultViewHtml
 			$data['undefined_quantity'] = 1;
 			$data['item_name'] 	= 'CONE Membership';
 			$data['item_number'] = 1;
-			$data['invoice'] = $item->id;
+			$data['invoice'] = 'm'. $item->id;
 			$data['currency_code'] = $params->get('currency_code');
 			$data['no_shipping'] = 1;
 			
