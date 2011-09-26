@@ -69,9 +69,13 @@ class ComDonateControllerPaypal extends ComDefaultControllerResource
 	protected function _sendMembershipThankyou($membership)
 	{
 		$subject = "Thank you for becoming a Coalition on the Niagara Escarpment Member";
-		$body = "<p>Your transaction has been successfully completed!</p>".
-			"<p>The Coalition on the Niagara Escarpment greatly appreciates your support and hopes you will continue to be in active in your usage of our website and ongoing protection of the Escarpment.</p>".
-			"<p>Thank you!</p>";
+		$body = "<p>Your transaction has been successfully completed.";
+		if ($membership->gift) {
+			$body .= " Attached to this email is a PDF of a CONE certificate for you to print, fill out and give to your gift recipient.";
+		}
+		$body .= "</p>";
+		$body .= "<p>The Coalition on the Niagara Escarpment greatly appreciates your support!</p>";
+		$body .= "<p>Thank you!</p>";
 		
 		$this->_sendEmail($membership->email, $subject, $body,
 			($membership->gift)? JPATH_SITE.'/media/com_donate/CONE_GiftCertificate.pdf' : null
@@ -84,7 +88,7 @@ class ComDonateControllerPaypal extends ComDefaultControllerResource
 		$email = $params->get('notification_email');
 		
 		$subject = 'New Membership registration';
-		$body = "<p>There is a new membership registration:</p>".
+		$body = "<p>New CONE membership:</p>".
 			"<p>Name: {$membership->last_name}, {$membership->first_name}<br/>".
 			"Occupation/Organization: {$membership->occupation}<br/>".
 			"Phone: {$membership->phone}<br/>".
@@ -93,12 +97,43 @@ class ComDonateControllerPaypal extends ComDefaultControllerResource
 			"Address: {$membership->address2}<br/>".
 			"City: {$membership->city}<br/>".
 			"Province: {$membership->province}<br/>".
-			"Postal Code: {$membership->postal}</p>".
-			"<p>Membership Cost: {$membership->amount}<br/>".
-			"Donation: {$membership->donation}<br/>".
-			"Autorenew: {$membership->renew}<br/>".
-			"Gift: {$membership->gift}<br/>".
-			"Volunteer: {$membership->volunteer}</p>";
+			"Postal Code: {$membership->postal}</p>";
+		
+		if ($membership->amount == 25) {
+			$body .= "<p>Membership Type: Student/Senior ($25/year)</p>";
+		} else if ($membership->amount == 35) {
+			$body .= "<p>Membership Type: Individual ($35/year)</p>";
+		} else if ($membership->amount == 40) {
+			$body .= "<p>Membership Type: Family ($40/year)</p>";
+		} else if ($membership->amount == 60) {
+			$body .= "<p>Membership Type: Fewer than 75 Members ($60/year)</p>";
+		} else if ($membership->amount == 75) {
+			$body .= "<p>Membership Type: 75 to 150 Members ($75/year)</p>";
+		} else if ($membership->amount == 120) {
+			$body .= "<p>Membership Type: More than 150 Members ($120/year)</p>";
+		}
+		
+		$body .= "Donation: {$membership->donation}<br/>";
+		
+		if ($membership->renew) {
+			$body .= "Autorenew: Yes<br />";
+		} else {
+			$body .= "Autorenew: No<br />";
+		}
+		
+		if ($membership->gift) {
+			$body .= "Gift: Yes<br />";
+		} else {
+			$body .= "Gift: No<br />";
+		}
+		
+		if ($membership->volunteer) {
+			$body .= "Volunteer: Yes<br />";
+		} else {
+			$body .= "Volunteer: No<br />";
+		}
+		
+		$body .= "Newsletter: {$membership->newsletter_format}</p>";
 		
 		$this->_sendEmail($email, $subject, $body);
 	}
@@ -106,12 +141,11 @@ class ComDonateControllerPaypal extends ComDefaultControllerResource
 	protected function _sendDonationThankyou($donation)
 	{
 		$subject = "Thank you for your donation";
-		$body = "<p>Your donation to the coalition on the Niagara Escapmemt was successfully recieved, thank you</p>";
-		
+		$body = "<p>Your donation to the coalition on the Niagara Escapmemt was successfully recieved.";
 		if ($donation->gift) {
-			$body .= "<p>A printable file is attached to this email which you can use to share with the person you have donated in the name of.</p>";
+			$body .= " Attached to this email is a PDF of a CONE certificate for you to print, fill out and give to your gift recipient.";
 		}
-		
+		$body .= "</p>";
 		$body .= "<p>Thank you!</p>";
 		
 		$this->_sendEmail(
@@ -129,18 +163,28 @@ class ComDonateControllerPaypal extends ComDefaultControllerResource
 		
 		$subject = "A new donation has been made";
 		$body = "<p>There is a new donation:</p>".
-					"<p>Name: {$membership->last_name}, {$membership->first_name}<br/>".
-					"Occupation/Organization: {$membership->occupation}<br/>".
-					"Phone: {$membership->phone}<br/>".
-					"Email: {$membership->email}</p>".
-					"<p>Address: {$membership->address1}<br/>".
-					"Address: {$membership->address2}<br/>".
-					"City: {$membership->city}<br/>".
-					"Province: {$membership->province}<br/>".
-					"Postal Code: {$membership->postal}</p>".
-					"<p>Donation: {$membership->donation}<br/>".
-					"Gift: {$membership->gift}<br/>".
-					"Volunteer: {$membership->volunteer}</p>";
+					"<p>Name: {$donation->last_name}, {$donation->first_name}<br/>".
+					"Occupation/Organization: {$donation->occupation}<br/>".
+					"Phone: {$donation->phone}<br/>".
+					"Email: {$donation->email}</p>".
+					"<p>Address: {$donation->address1}<br/>".
+					"Address: {$donation->address2}<br/>".
+					"City: {$donation->city}<br/>".
+					"Province: {$donation->province}<br/>".
+					"Postal Code: {$donation->postal}</p>".
+					"<p>Donation: {$donation->donation}<br/>";
+		if ($donation->gift) {
+			$body .= "Gift: Yes<br />";
+		} else {
+			$body .= "Gift: No<br />";
+		}
+		
+		if ($donation->volunteer) {
+			$body .= "Volunteer: Yes<br />";
+		} else {
+			$body .= "Volunteer: No<br />";
+		}
+		$body .= "Newsletter: {$donation->newsletter_format}</p>";
 		
 		$this->_sendEmail(
 			$email,
