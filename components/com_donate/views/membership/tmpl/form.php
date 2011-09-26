@@ -138,6 +138,12 @@ Escarpment regions through our Escarpment Enterprise Club</li>
 				<td class="key"><label>Would you be interested in volunteering with CONE?:</label></td>
 				<td><?= @helper('listbox.yesno', array('name'=>'volunteer')) ?></td>
 			</tr>
+			
+			<tr>
+				<td class="key"><label>How would you like to recieve our newsletter?:</label></td>
+				<td><?= @helper('listbox.newsletterFormat') ?></td>
+			</tr>
+			
 		</table>
 	</fieldset>
 	

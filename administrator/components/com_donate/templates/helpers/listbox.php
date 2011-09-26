@@ -54,4 +54,24 @@ class ComDonateTemplateHelperListbox extends ComDefaultTemplateHelperListbox
 		return $this->optionlist($config);
 	}
 	
+	public function newsletterFormat($config = array())
+	{
+		$config = new KConfig($config);
+		$config->append(array(
+			'name' => 'newsletter_format',
+		))->append(array(
+			'selected'	=> $config->{$config->name}
+		));
+		
+		$options = array();
+		$options[] = $this->option(array('text'=>'Email', 'value'=>'Email'));
+		$options[] = $this->option(array('text'=>'Mail', 'value'=>'Mail'));
+		$options[] = $this->option(array('text'=>'Do not send', 'value'=>'None'));
+		
+		$config->options = $options;
+		return $this->optionlist($config);
+	}
+	
+
+	
 }
