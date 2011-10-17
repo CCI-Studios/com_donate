@@ -15,8 +15,6 @@
 <ul>
 	<li>a subscription to our quarterly newsletter, ON THE EDGE</li>
 	<li>a 'World Biosphere Reserve' magnetic decal</li>
-	<li>a membership card which you can use at various locations throughout the Niagara
-Escarpment regions through our Escarpment Enterprise Club</li>
 	<li>recognition (with your permission) on our website and in our newsletter, ON THE EDGE</li>
 </ul>
 <? elseif ($type == '2'): ?>
@@ -24,8 +22,6 @@ Escarpment regions through our Escarpment Enterprise Club</li>
 <ul>
 	<li>a subscription to our quarterly newsletter, ON THE EDGE</li>
 	<li>a 'World Biosphere Reserve' magnetic decal</li>
-	<li>a membership card which you can use at various locations throughout the Niagara
-Escarpment regions through our Escarpment Enterprise Club</li>
 	<li>recognition (with your permission) on our website and in our newsletter, ON THE EDGE</li>
 </ul>
 <? endif;?>
@@ -140,7 +136,7 @@ Escarpment regions through our Escarpment Enterprise Club</li>
 			</tr>
 			
 			<tr>
-				<td class="key"><label>How would you like to recieve our newsletter?:</label></td>
+				<td class="key"><label>How would you like to receive our newsletter?:</label></td>
 				<td><?= @helper('listbox.newsletterFormat') ?></td>
 			</tr>
 			

@@ -68,7 +68,7 @@ class ComDonateControllerPaypal extends ComDefaultControllerResource
 	
 	protected function _sendMembershipThankyou($membership)
 	{
-		$subject = "Thank you for becoming a Coalition on the Niagara Escarpment Member";
+		$subject = "Thank you for becoming a member of the Coalition on the Niagara Escarpment";
 		$body = "<p>Your transaction has been successfully completed.";
 		if ($membership->gift) {
 			$body .= " Attached to this email is a PDF of a CONE certificate for you to print, fill out and give to your gift recipient.";
@@ -141,7 +141,7 @@ class ComDonateControllerPaypal extends ComDefaultControllerResource
 	protected function _sendDonationThankyou($donation)
 	{
 		$subject = "Thank you for your donation";
-		$body = "<p>Your donation to the coalition on the Niagara Escapmemt was successfully recieved.";
+		$body = "<p>Your donation to the Coalition on the Niagara Escapmemt was successfully recieved.";
 		if ($donation->gift) {
 			$body .= " Attached to this email is a PDF of a CONE certificate for you to print, fill out and give to your gift recipient.";
 		}
