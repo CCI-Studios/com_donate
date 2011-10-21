@@ -14,14 +14,14 @@
 <p>Benefits of an Individual Member of CONE</p>
 <ul>
 	<li>a subscription to our quarterly newsletter, ON THE EDGE</li>
-	<li>a 'World Biosphere Reserve' magnetic decal</li>
+	<li>knowing that you are a vital part to the Niagara Escarpment's protection</li>
 	<li>recognition (with your permission) on our website and in our newsletter, ON THE EDGE</li>
 </ul>
 <? elseif ($type == '2'): ?>
 <p>Benefits of being an Organization Member of CONE</p>
 <ul>
 	<li>a subscription to our quarterly newsletter, ON THE EDGE</li>
-	<li>a 'World Biosphere Reserve' magnetic decal</li>
+	<li>knowing that you are a vital part to the Niagara Escarpment's protection</li>
 	<li>recognition (with your permission) on our website and in our newsletter, ON THE EDGE</li>
 </ul>
 <? endif;?>
