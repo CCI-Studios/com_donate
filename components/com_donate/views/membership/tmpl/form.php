@@ -140,6 +140,11 @@
 				<td><?= @helper('listbox.newsletterFormat') ?></td>
 			</tr>
 			
+			<tr>
+				<td class="key"><label>Would you like to be recognized as a member in CONE publications?</label></td>
+				<td><?= @helper('listbox.yesno', array('name'=>'recognized')) ?></td>
+			</tr>
+			
 		</table>
 	</fieldset>
 	

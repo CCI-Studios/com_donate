@@ -20,6 +20,7 @@ CREATE TABLE IF NOT EXISTS `#__donate_memberships` (
 	`gift` TINYINT(1) NOT NULL DEFAULT '0',
 	`type` TINYINT(1) NOT NULL DEFAULT '1',
 	`newsletter_format` VARCHAR(10) NOT NULL,
+	`recognized` TINYINT(1) NOT NULL DEFAULT '1',
 	
 	`confirmation` VARCHAR(250) NOT NULL,
 	`status` TINYINT(1) NOT NULL DEFAULT '0'

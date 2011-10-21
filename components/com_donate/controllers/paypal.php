@@ -133,7 +133,8 @@ class ComDonateControllerPaypal extends ComDefaultControllerResource
 			$body .= "Volunteer: No<br />";
 		}
 		
-		$body .= "Newsletter: {$membership->newsletter_format}</p>";
+		$body .= "Newsletter: {$membership->newsletter_format}<br/>";
+		$body .= "Recognition in Publications: {$membership->recognized}</p>";
 		
 		$this->_sendEmail($email, $subject, $body);
 	}
